@@ -19,6 +19,12 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
+    js(IR) {
+        moduleName = "kmmdemo"
+        binaries.executable()
+        generateTypeScriptDefinitions()
+    }
+
     cocoapods {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
@@ -29,11 +35,11 @@ kotlin {
             baseName = "shared"
         }
     }
-    
+
     sourceSets {
         val commonMain by getting {
             dependencies {
-                //put your multiplatform dependencies here
+                // put your multiplatform dependencies here
             }
         }
         val commonTest by getting {
