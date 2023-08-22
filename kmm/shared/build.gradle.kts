@@ -36,11 +36,38 @@ kotlin {
             baseName = "shared"
         }
     }
-    
+
     sourceSets {
+        all {
+            // JsExport for everything
+            languageSettings.apply {
+                optIn("kotlin.js.ExperimentalJsExport")
+            }
+        }
+
         val commonMain by getting {
             dependencies {
-                //put your multiplatform dependencies here
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
+                val ktorVersion = "2.3.2"
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+            }
+        }
+        val androidMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-android:2.3.2")
+            }
+        }
+        val iosMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-darwin:2.3.2")
+            }
+        }
+        val jsMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-js:2.3.2")
             }
         }
         val commonTest by getting {
