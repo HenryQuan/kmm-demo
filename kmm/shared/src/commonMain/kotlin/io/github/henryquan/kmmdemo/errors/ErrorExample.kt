@@ -22,4 +22,16 @@ object ErrorExample {
     fun throwErrorCode(@ObjCName("with") code: Int) {
         throw SharedError.Generic("Error code: $code")
     }
+
+    fun returnError(): SharedError {
+        return SharedError.NoInternet
+    }
+
+    fun returnResultFailure(): KMMResult<String, SharedError> {
+        return KMMResult.Error(SharedError.NoInternet)
+    }
+
+    fun returnResultSuccess(): KMMResult<String, SharedError> {
+        return KMMResult.Ok("Hello")
+    }
 }

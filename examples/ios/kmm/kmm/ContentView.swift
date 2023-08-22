@@ -10,6 +10,7 @@ import shared
 
 struct ContentView: View {
     @State var ipInfo: String?
+    let example = Example()
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -17,7 +18,8 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
             Button("Hello") {
-                Example().tryThrow()
+                example.tryResult()
+                example.tryThrow()
             }
             
             if let info = ipInfo {
