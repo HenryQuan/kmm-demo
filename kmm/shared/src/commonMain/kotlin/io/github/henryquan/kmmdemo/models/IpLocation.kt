@@ -2,6 +2,7 @@ package io.github.henryquan.kmmdemo.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import kotlin.js.JsExport
 
 @Serializable
@@ -35,4 +36,12 @@ data class IpLocation(
 
     val countryAndRegion: String
         get() = "$country, $regionName"
+}
+
+@JsExport
+object JSON {
+    @Throws(Exception::class)
+    fun decodeIpLocation(string: String): IpLocation {
+        return Json.decodeFromString(IpLocation.serializer(), string)
+    }
 }

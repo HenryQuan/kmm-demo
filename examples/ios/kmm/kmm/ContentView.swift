@@ -17,7 +17,7 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
             Button("Hello") {
-                Example().error()
+                Example().tryThrow()
             }
             
             if let info = ipInfo {
@@ -26,9 +26,10 @@ struct ContentView: View {
         }
         .padding()
         .onAppear(perform: {
-            IpService().getIpLocation { location, error in
-                ipInfo = location?.description()
-            }
+//            IpService().getIpLocation { location, error in
+//                ipInfo = location?.description()
+//            }
+            ipInfo = Example().decodeKotlinModel()?.description()
         })
     }
 }

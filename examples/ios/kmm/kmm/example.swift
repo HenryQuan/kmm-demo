@@ -13,14 +13,33 @@ import shared
 class Example {
     func getIpLocation() {
         IpService().getIpLocation { location, error in
-            print(location?.description())
+            print(location?.description)
         }
     }
     
     func error() {
-        ErrorExample().throwError(with: 1)
+        do {
+            try ErrorExample().throwError(with: 1)
+        } catch {
+            print(error)
+        }
+        
     }
     
-    func tryResult() {
+    func tryThrow() {
+        do {
+            try ErrorExample.shared.throwSharedError()
+        } catch {
+            print(error)
+        }
+    }
+    
+    private let json = "{\"status\":\"success\",\"country\":\"Australia\",\"countryCode\":\"AU\",\"region\":\"NSW\",\"regionName\":\"New South Wales\",\"city\":\"Sydney\",\"zip\":\"2000\",\"lat\":-33.8715,\"lon\":151.2006,\"timezone\":\"Australia/Sydney\",\"isp\":\"TPG Internet Pty Ltd\",\"org\":\"iiNet Limited\",\"as\":\"AS7545 TPG Telecom Limited\",\"query\":\"1.2.3.4\"}"
+    
+    func decodeKotlinModel() -> IpLocation? {
+        let result = try? JSON.shared.decodeIpLocation(string: json)
+        return result
     }
 }
+
+
