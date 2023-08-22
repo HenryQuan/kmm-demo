@@ -18,7 +18,8 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
             Button("Hello") {
-                example.tryResult()
+                let result = example.tryResult()
+                print(result.errorOrNull() as Any)
                 example.tryThrow()
             }
             

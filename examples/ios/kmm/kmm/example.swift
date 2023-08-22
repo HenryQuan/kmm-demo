@@ -38,6 +38,14 @@ class Example {
     
     func tryResult() -> KMMResult<NSString, SharedError> {
         let failed = ErrorExample.shared.returnResultFailure()
+        switch failed.errorOrNull() {
+        case .none:
+            print("Nothing")
+        case .some(.NoInternet()):
+            print("Internet")
+        case .some(_):
+            print("Others")
+        }
         let success = ErrorExample.shared.returnResultSuccess()
         return failed
     }
@@ -45,7 +53,7 @@ class Example {
     private let json = "{\"status\":\"success\",\"country\":\"Australia\",\"countryCode\":\"AU\",\"region\":\"NSW\",\"regionName\":\"New South Wales\",\"city\":\"Sydney\",\"zip\":\"2000\",\"lat\":-33.8715,\"lon\":151.2006,\"timezone\":\"Australia/Sydney\",\"isp\":\"TPG Internet Pty Ltd\",\"org\":\"iiNet Limited\",\"as\":\"AS7545 TPG Telecom Limited\",\"query\":\"1.2.3.4\"}"
     
     func decodeKotlinModel() -> IpLocation? {
-        let result = try? JSON.shared.decodeIpLocation(string: json)
+        let result = try? JSONUtil().decodeIpLocation(string: json)
         return result
     }
 }
