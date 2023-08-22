@@ -39,7 +39,7 @@ data class IpLocation(
 }
 
 @JsExport
-object JSON {
+object JSONUtil {
     @Throws(Exception::class)
     fun decodeIpLocation(string: String): IpLocation {
         return Json.decodeFromString(IpLocation.serializer(), string)
