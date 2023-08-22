@@ -1,0 +1,10 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'kmm' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  platform :ios, '14.1'
+  # Pods for kmm
+  pod 'shared', :path => '../../../kmm/shared/'
+end
