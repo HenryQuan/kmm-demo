@@ -21,6 +21,8 @@ kotlin {
 
     js(IR) {
         moduleName = "kmmdemo"
+        browser()
+        nodejs()
         binaries.executable()
         generateTypeScriptDefinitions()
     }
@@ -30,16 +32,15 @@ kotlin {
         homepage = "Link to the Shared Module homepage"
         version = "1.0"
         ios.deploymentTarget = "14.1"
-        podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
         }
     }
-
+    
     sourceSets {
         val commonMain by getting {
             dependencies {
-                // put your multiplatform dependencies here
+                //put your multiplatform dependencies here
             }
         }
         val commonTest by getting {
@@ -51,9 +52,9 @@ kotlin {
 }
 
 android {
-    namespace = "io.github.henryquan.kmm_demo"
+    namespace = "io.github.henryquan.kmmdemo"
     compileSdk = 33
     defaultConfig {
-        minSdk = 24
+        minSdk = 26
     }
 }
